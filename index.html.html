@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday Prachi ❤️</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600&family=Quicksand:wght@400;600;700&display=swap');
+
+        :root {
+            --bg-color: #fce7f3; /* Soft pink background */
+            --card-bg: #f3e8ff; /* Soft pastel purple */
+            --primary: #c084fc; /* Deeper purple */
+            --text-dark: #6b21a8;
+            --white: #ffffff;
+            --shadow: 0 10px 30px rgba(192, 132, 252, 0.3);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Quicksand', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            overflow-x: hidden;
+            background-image: radial-gradient(circle at center, #fdf4ff 0%, #fce7f3 100%);
+        }
+
+        /* Falling Hearts */
+        .heart {
+            position: fixed;
+            top: -10vh;
+            font-size: 1.5rem;
+            animation: fall linear forwards;
+            z-index: 9999;
+            pointer-events: none;
+        }
+
+        @keyframes fall {
+            to { transform: translateY(110vh) rotate(360deg); }
+        }
+
+        /* Main Card Container */
+        .card {
+            background: var(--card-bg);
+            width: 100%;
+            max-width: 450px;
+            min-height: 85vh;
+            border-radius: 25px;
+            box-shadow: var(--shadow);
+            border: 4px solid var(--white);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 30px 20px;
+            margin: 20px;
+        }
+
+        /* Screen Navigation Logic */
+        .screen {
+            display: none;
+            width: 100%;
+            text-align: center;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+        .screen.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Glowing Heading */
+        .glow-text {
+            font-family: 'Fredoka', sans-serif;
+            font-size: 2rem;
+            color: var(--text-dark);
+            text-shadow: 0 0 10px #e9d5ff, 0 0 20px #c084fc;
+            animation: pulseGlow 2s infinite alternate;
+            margin-bottom: 5px;
+        }
+
+        @keyframes pulseGlow {
+            0% { text-shadow: 0 0 10px #e9d5ff, 0 0 20px #c084fc; }
+            100% { text-shadow: 0 0 15px #c084fc, 0 0 30px #a855f7; }
+        }
+
+        /* Typing Animation */
+        .typing-container {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #db2777;
+            min-height: 35px;
+            margin-bottom: 15px;
+        }
+        .cursor {
+            animation: blink 0.8s infinite;
+        }
+        @keyframes blink { 50% { opacity: 0; } }
+
+        /* Countdown */
+        .countdown-box {
+            background: var(--white);
+            padding: 10px 15px;
+            border-radius: 15px;
+            color: var(--primary);
+            font-weight: bold;
+            font-size: 1.1rem;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            margin-bottom: 20px;
+        }
+
+        /* Interactive Cake */
+        .cake-container {
+            margin: 20px 0;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+        .cake-container:hover { transform: scale(1.05); }
+        .cake-img {
+            width: 150px;
+            filter: drop-shadow(0 10px 10px rgba(0,0,0,0.1));
+        }
+
+        /* Nav Buttons (Matching your image) */
+        .nav-title {
+            font-family: 'Fredoka', sans-serif;
+            color: var(--text-dark);
+            margin: 20px 0 15px;
+            letter-spacing: 1px;
+            font-size: 1.2rem;
+        }
+
+        .nav-grid {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .nav-item {
+            width: 80px;
+            height: 80px;
+            background: #d8b4e2; /* Matching the image buttons */
+            border-radius: 15px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 2.5rem;
+            color: white;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            cursor: pointer;
+            border: 3px solid var(--white);
+            transition: transform 0.2s;
+        }
+        .nav-item:hover { transform: translateY(-5px); }
+
+        /* Primary Buttons */
+        .btn {
+            background: linear-gradient(135deg, #c084fc, #ec4899);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 25px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(236, 72, 153, 0.4);
+            transition: transform 0.2s;
+            margin: 5px;
+        }
+        .btn:hover { transform: scale(1.05); }
+        .btn-back {
+            background: var(--white);
+            color: var(--text-dark);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+            padding: 8px 20px;
+        }
+
+        /* Slideshow Gallery */
+        .polaroid {
+            background: white;
+            padding: 10px 10px 25px 10px;
+            border-radius: 5px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+            margin: 0 auto;
+            width: 90%;
+            transform: rotate(-2deg);
+        }
+        .polaroid img {
+            width: 100%;
+            border-radius: 3px;
+            height: 250px;
+            object-fit: cover;
+        }
+
+        /* Letter formatting */
+        .letter-content {
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            text-align: left;
+            font-size: 1.05rem;
+            line-height: 1.6;
+            color: #4c1d95;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            border-left: 4px solid var(--primary);
+            max-height: 60vh;
+            overflow-y: auto;
+        }
+
+        /* Music Controls */
+        .music-box {
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+
+        /* Modals */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.6);
+            z-index: 10000;
+            justify-content: center;
+            align-items: center;
+        }
+        .modal-content {
+            background: white;
+            padding: 30px;
+            border-radius: 20px;
+            text-align: center;
+            width: 85%;
+            max-width: 350px;
+            animation: fadeIn 0.3s;
+        }
+        .modal-content h2 { color: #db2777; margin-bottom: 15px; }
+
+    </style>
+</head>
+<body>
+
+    <!-- Background Music -->
+    <audio id="bg-music" loop>
+        <source src="song.mp3" type="audio/mpeg">
+    </audio>
+
+    <div class="card">
+        
+        <!-- ================= HOME SCREEN ================= -->
+        <div id="home" class="screen active">
+            <h1 class="glow-text">🎂 Happy Birthday ✨</h1>
+            <div class="typing-container">
+                <span id="typing-text"></span><span class="cursor">|</span>
+            </div>
+
+            <div class="countdown-box">
+                ⏳ <span id="timer">Loading...</span>
+            </div>
+
+            <div class="cake-container" onclick="cutCake()">
+                <!-- Using a cute SVG cake for instant loading, representing the cake button -->
+                <img src="https://cdn-icons-png.flaticon.com/512/2488/2488614.png" alt="Cake" class="cake-img">
+                <p style="color: var(--text-dark); margin-top: 10px; font-weight: 600;">Click to cut the cake!</p>
+            </div>
+
+            <h3 class="nav-title">♥ THESE ARE FOR YOU ♥</h3>
+            <p style="font-size: 0.8rem; color: #8b5cf6; margin-bottom: 10px;">Click to open!</p>
+            
+            <div class="nav-grid">
+                <div class="nav-item" onclick="changeScreen('music')">🎵</div>
+                <div class="nav-item" onclick="changeScreen('gallery')">📸</div>
+                <div class="nav-item" onclick="changeScreen('letter')">💌</div>
+            </div>
+
+            <button class="btn" onclick="showSurprise()">🎁 Surprise Me!</button>
+        </div>
+
+        <!-- ================= GALLERY SCREEN ================= -->
+        <div id="gallery" class="screen">
+            <button class="btn btn-back" onclick="changeScreen('home')">🔙 Back</button>
+            <h2 style="color: var(--text-dark); margin-bottom: 20px;">Beautiful Memories ✨</h2>
+            
+            <div class="polaroid">
+                <img id="slideshow-img" src="photo1.jpg" alt="Memory" onerror="this.src='https://images.unsplash.com/photo-1518133835878-5a93cc3f89e5?w=500&q=80'">
+                <p style="margin-top: 10px; font-weight: bold; color: var(--text-dark);">You are so special 💖</p>
+            </div>
+        </div>
+
+        <!-- ================= LETTER SCREEN ================= -->
+        <div id="letter" class="screen">
+            <button class="btn btn-back" onclick="changeScreen('home')">🔙 Back</button>
+            <h2 style="color: var(--text-dark); margin-bottom: 20px;">For My Best Friend 🌸</h2>
+            
+            <div class="letter-content">
+                Hey, happy birthday ❤️🎂✨<br><br>
+                You are the most special person in my life, and truly the most beautiful soul I ever met 💫 I don’t think I can ever fully express what you mean to me. Just seeing you smile is enough to make my whole day better 😊 Your smile means more to me than words can explain 💖<br><br>
+                On your special day, I wish you all the happiness in the world 🌍🎉 May all your wishes come true, and may your life be filled with beautiful moments ✨ Whatever you go through in life, I hope you always achieve your dreams and stay strong 💪🌸<br><br>
+                You are the one who makes me smile, and your happiness matters a lot to me 🥺💗 So please, always stay happy and keep smiling… because your smile is what keeps me going 😊❤️<br><br>
+                I’ll always try my best to make you happy 💞<br><br>
+                Enjoy your day to the fullest 🎈🎁 Happy birthday once again… and please, never remove me from your life 🤍
+            </div>
+        </div>
+
+        <!-- ================= MUSIC SCREEN ================= -->
+        <div id="music" class="screen">
+            <button class="btn btn-back" onclick="changeScreen('home')">🔙 Back</button>
+            <h2 style="color: var(--text-dark); margin-bottom: 20px;">Our Favorite Song 🎧</h2>
+            
+            <div class="music-box">
+                <p style="margin-bottom: 20px; color: var(--text-dark);">Play the music while you read my letter!</p>
+                <button class="btn" onclick="document.getElementById('bg-music').play()">▶️ Play Music</button>
+                <button class="btn" style="background: #9ca3af;" onclick="document.getElementById('bg-music').pause()">⏸️ Pause</button>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Modals -->
+    <div id="surprise-modal" class="modal">
+        <div class="modal-content">
+            <h2>🎉 SURPRISE! 🎉</h2>
+            <p style="margin-bottom: 20px;">You are the best thing that ever happened to me. Never forget how loved you are! Here's a massive virtual hug! 🤗💖</p>
+            <button class="btn" onclick="closeModal('surprise-modal')">Love you too! 🥺</button>
+        </div>
+    </div>
+
+    <div id="cake-modal" class="modal">
+        <div class="modal-content">
+            <h2>🎂 YAY! 🎂</h2>
+            <img src="https://media.giphy.com/media/iE12D5qK0Jk1XU1kO2/giphy.gif" width="100%" style="border-radius: 10px; margin-bottom: 15px;">
+            <p style="margin-bottom: 20px;">Make a wish, Prachi! May it come true very soon! ✨</p>
+            <button class="btn" onclick="closeModal('cake-modal')">Wish Made! 💫</button>
+        </div>
+    </div>
+
+    <script>
+        // 1. Falling Hearts Animation
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.classList.add('heart');
+            heart.innerText = ['❤️', '💖', '🌸', '✨', '🤍'][Math.floor(Math.random() * 5)];
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.animationDuration = Math.random() * 3 + 3 + 's';
+            document.body.appendChild(heart);
+            setTimeout(() => { heart.remove(); }, 6000);
+        }
+        setInterval(createHeart, 300);
+
+        // 2. Typing Animation
+        const text = "Prachi ❤️";
+        let index = 0;
+        function typeWriter() {
+            if (index < text.length) {
+                document.getElementById("typing-text").innerHTML += text.charAt(index);
+                index++;
+                setTimeout(typeWriter, 150);
+            }
+        }
+        setTimeout(typeWriter, 1000);
+
+        // 3. Live Countdown to April 30
+        const currentYear = new Date().getFullYear();
+        let targetDate = new Date(`April 30, ${currentYear} 00:00:00`).getTime();
+        
+        // If April 30 has already passed this year, count to next year
+        if (new Date().getTime() > targetDate) {
+            targetDate = new Date(`April 30, ${currentYear + 1} 00:00:00`).getTime();
+        }
+
+        const timer = setInterval(() => {
+            const now = new Date().getTime();
+            const distance = targetDate - now;
+
+            if (distance < 0) {
+                clearInterval(timer);
+                document.getElementById("timer").innerHTML = "IT'S YOUR BIRTHDAY! 🎉";
+                return;
+            }
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            document.getElementById("timer").innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s left!`;
+        }, 1000);
+
+        // 4. Screen Navigation
+        function changeScreen(screenId) {
+            document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+            document.getElementById(screenId).classList.add('active');
+        }
+
+        // 5. Slideshow Logic
+        const images =["photo1.jpg", "photo2.jpg", "photo3.jpg", "photo4.jpg"];
+        let imgIndex = 0;
+        setInterval(() => {
+            imgIndex = (imgIndex + 1) % images.length;
+            const imgElement = document.getElementById("slideshow-img");
+            // Setting source, it will fall back to unsplash if local images aren't found
+            imgElement.src = images[imgIndex]; 
+        }, 3000);
+
+        // 6. Modals Logic
+        function showSurprise() {
+            document.getElementById('surprise-modal').style.display = 'flex';
+            // Start lots of hearts!
+            for(let i=0; i<20; i++) { setTimeout(createHeart, i*100); }
+        }
+
+        function cutCake() {
+            document.getElementById('cake-modal').style.display = 'flex';
+        }
+
+        function closeModal(id) {
+            document.getElementById(id).style.display = 'none';
+        }
+    </script>
+</body>
+</html>
